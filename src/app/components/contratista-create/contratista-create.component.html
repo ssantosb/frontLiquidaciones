@@ -245,6 +245,13 @@
           <div mat-line>{{ equipo.nombre }} {{ equipo.precio }}</div>
         </mat-list-item>
       </div>
+
+      <div class="gridPrecios">
+        <h3>Conceptos (Actividades y Materiales)</h3>
+        <mat-list-item *ngFor="let concepto of tipo[2]">
+          <div mat-line>{{ equipo.nombre }} {{ equipo.precio }}</div>
+        </mat-list-item>
+      </div>
     </div>
   </form>
 </div>

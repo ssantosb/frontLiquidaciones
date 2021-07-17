@@ -143,8 +143,10 @@ export class ContratistaDetailComponent implements OnInit {
     this.getContratista(this.idContratista).add(()=>{this.transformar();this.llenarLabels();});
     this.getPreciosConceptos(this.idContratista).add(()=>(this.getPreciosEquipos(this.idContratista).add(()=>{console.log("llegue aqui"); this.listarPrecios()
   })))
+  }
 
-
+  getTextoCampo(texto):string{
+    return ' '
   }
 
 }
