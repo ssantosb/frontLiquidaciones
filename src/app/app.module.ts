@@ -13,6 +13,7 @@ import { ContratistaDetailComponent } from './components/contratista-detail/cont
 import { ContratistaUpdateComponent } from './components/contratista-update/contratista-update.component'; 
 import { CdkColumnDef } from '@angular/cdk/table';
 import { ContratistaCreateComponent } from './components/contratista-create/contratista-create.component';
+import { PioneroActualizarComponent } from './components/pionero-actualizar/pionero-actualizar.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { ContratistaCreateComponent } from './components/contratista-create/cont
     ContratistaListComponent,
     ContratistaDetailComponent,
     ContratistaUpdateComponent,
-    ContratistaCreateComponent
+    ContratistaCreateComponent,
+    PioneroActualizarComponent //N
   ],
   imports: [
     BrowserModule,
