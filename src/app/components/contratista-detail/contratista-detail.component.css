@@ -1,0 +1,105 @@
+.contentDetailInfo {
+  grid-column: 1;
+  grid-row: 1/3;
+  margin-right: 40%;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: auto;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
+.contentDetailServicios {
+  grid-column: 2/5;
+  grid-row: 1/3;
+  margin-left: 25%;
+}
+
+.containerDetail {
+  width: 100%;
+  display: grid;
+  height: 100%;
+  grid-template-columns: repeat(5, auto);
+  justify-content: center;
+  grid-auto-rows: repeat(5, auto);
+}
+
+.gridDetailPrecios {
+  grid-column: span 4;
+  grid-row: 4/6;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(3, auto);
+  grid-gap: 150px;
+  grid-auto-rows: minmax(100px, auto);
+}
+
+.listaPrecios {
+  grid-column: span 1;
+}
+
+.titulo,
+.subtitulo {
+  justify-self: center;
+  font-weight: 700;
+  text-align: center;
+}
+
+.subtituloPrecios {
+  grid-row: 3;
+  grid-column: 2;
+}
+.colorPrimary {
+  background-color: #3f51b5;
+  color: white;
+  font-weight: 600;
+}
+table {
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.example-element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
+.example-element-description {
+  padding: 16px;
+}
+
+.example-element-description-attribution {
+  opacity: 0.5;
+}

@@ -1,0 +1,100 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: auto;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
+.containerP {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: auto;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.containerC {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
+.containerC h2 {
+  align-self: center;
+}
+
+.containerTipos {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  height: auto;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
+.gridInstalacionPrecios {
+  display: flex;
+  flex-direction: row;
+  width: auto;
+  height: auto;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
+.gridPrecios {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  height: auto;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-right: 10%;
+}
+
+.containerTipos button,
+.containerTipos input,
+.containerTipos label {
+  align-self: center;
+}
+
+.containerTipos button {
+  width: 100px;
+  color: white;
+  background-color: #3f51b5;
+}
+
+.gridForm {
+  width: 100%;
+  display: grid;
+  height: 100%;
+  grid-template-columns: repeat(4, auto);
+  justify-content: center;
+  grid-auto-rows: repeat(4, auto);
+}
+
+.titulo,
+.subtitulo {
+  justify-self: center;
+  font-weight: 700;
+  text-align: center;
+}
+
+.example-container {
+  text-align: center;
+}
+
+.form-container {
+  width: 400 px;
+  margin: 0 px auto;
+  margin-top: 200 px;
+}
+
+.form-field {
+  display: block;
+}

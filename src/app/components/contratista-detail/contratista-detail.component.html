@@ -1,0 +1,133 @@
+<div class="container">
+  <h1 class="titulo">{{ contratista.nombre }}</h1>
+  <button mat-raised-button color="primary">Editar</button>
+</div>
+<div class="containerDetail">
+  <div class="contentDetailInfo">
+    <h2 class="subtitulo">{{ subtitulo }}</h2>
+
+    <div class="example-container mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource">
+        <ng-container class="colorPrimary" matColumnDef="label" sticky="true">
+          <td class="colorPrimary" mat-cell *matCellDef="let row">
+            {{ row.label }}
+          </td>
+        </ng-container>
+
+        <ng-container
+          [matColumnDef]="'column' + i"
+          *ngFor="let column of data; let i = index"
+        >
+          <td mat-cell *matCellDef="let row">{{ row["column" + i] }}</td>
+        </ng-container>
+
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="contentDetailServicios">
+    <h2 class="subtitulo">{{ subtituloServicios }}</h2>
+    <table
+      mat-table
+      [dataSource]="dataSourceServicios"
+      multiTemplateDataRows
+      class="mat-elevation-z8"
+    >
+      <ng-container
+        matColumnDef="{{ column }}"
+        *ngFor="let column of columnsToDisplayServicios"
+      >
+        <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
+        <td mat-cell *matCellDef="let element">{{ element[column] }}</td>
+      </ng-container>
+
+      <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+      <ng-container matColumnDef="expandedDetail">
+        <td
+          mat-cell
+          *matCellDef="let element"
+          [attr.colspan]="columnsToDisplayServicios.length"
+        >
+          <div
+            class="example-element-detail"
+            [@detailExpand]="
+              element == expandedServicio ? 'expanded' : 'collapsed'
+            "
+          >
+            <div class="example-element-description">
+              <mat-list role="list">
+                <mat-list-item role="listitem"
+                  >Tipos de instalaciones:
+                  {{
+                    getTextInstalaciones(element.instalaciones)
+                  }}</mat-list-item
+                >
+                <mat-list-item role="listitem"
+                  >Zona: {{ element.contratista.zona.nombre }}</mat-list-item
+                >
+                <mat-list-item role="listitem"
+                  >Estado: {{ element.estado }}</mat-list-item
+                >
+              </mat-list>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columnsToDisplayServicios"></tr>
+      <tr
+        mat-row
+        *matRowDef="let element; columns: columnsToDisplayServicios"
+        class="example-element-row"
+        [class.example-expanded-row]="expandedServicio === element"
+        (click)="
+          expandedServicio = expandedServicio === element ? null : element
+        "
+      ></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: ['expandedDetail']"
+        class="example-detail-row"
+      ></tr>
+    </table>
+  </div>
+  <h2 class="subtituloPrecios">{{ subtituloPrecios }}</h2>
+  <div class="gridDetailPrecios">
+    <div class="listaPrecios" *ngFor="let element of preciosTabla">
+      <h2 class="subtitulo">Instalación de {{ element[0] }}</h2>
+
+      <table
+        class="
+          mat-table
+          mdl-data-table mdl-js-data-table
+          mdl-data-table--selectable
+          mdl-shadow--2dp
+        "
+      >
+        <thead>
+          <tr>
+            <th class="mat-cell colorPrimary">Descripcion</th>
+            <th class="mat-cell colorPrimary">Precio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let concepto of element[1]">
+            <td class="mat-cell">
+              {{ concepto.descripcion }}
+            </td>
+            <td class="mat-cell">{{ concepto.precio }}</td>
+          </tr>
+          <tr>
+            <td class="mat-cell">TOTAL SIN EQUIPOS</td>
+            <td class="mat-cell">{{ element[2] }}</td>
+          </tr>
+          <tr>
+            <td class="mat-cell">TOTAL CON EQUIPOS</td>
+            <td class="mat-cell">{{ element[3] }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

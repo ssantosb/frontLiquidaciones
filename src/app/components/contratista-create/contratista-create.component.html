@@ -1,0 +1,250 @@
+<div class="container">
+  <h1 class="titulo">Registrar contratista</h1>
+</div>
+<div class="containerC" *ngIf="!tiposSeleccionados">
+  <h2>
+    Para comenzar con el proceso de liquidación de precios, comience por
+    seleccionar los servicios de instalación ofrecidos por el contratista:
+  </h2>
+
+  <form
+    [formGroup]="tiposInstalaciones"
+    (ngSubmit)="submitTiposInstalaciones()"
+  >
+    <div class="containerTipos">
+      <label
+        formArrayName="tipos"
+        *ngFor="let tipo of tiposFormArray.controls; let i = index"
+      >
+        <input type="checkbox" [formControlName]="i" />
+        {{ opcionesTipo[i].nombre }}
+      </label>
+      <button class="mat-button">Siguiente</button>
+    </div>
+  </form>
+</div>
+
+<div class="gridForm" *ngIf="datosFormularioCargados">
+  <div class="example-container">
+    <div class="form-container">
+      <form [formGroup]="datosContratista" (submit)="submitDatosContratista()">
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label> Nombre </mat-label>
+          <input matInput formControlName="nombre" name="nombre" required />
+          <mat-error
+            *ngIf="
+              datosContratista.controls.nombre.touched &&
+              datosContratista.controls.nombre.invalid
+            "
+          >
+            <span *ngIf="datosContratista.controls.nombre.errors.required"
+              >Este campo es obligatorio.</span
+            >
+            <span *ngIf="datosContratista.controls.nombre.errors.pattern"
+              >Este valor es invalido.</span
+            >
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="form-field" appearance="fill">
+          <mat-label> Tipo de documento </mat-label>
+          <mat-select formControlName="tipoDocumento" name="tipoDocumento">
+            <mat-option *ngFor="let tipo of tiposDocumentos" [value]="tipo">
+              {{ tipo }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              datosContratista.controls.tipoDocumento.touched &&
+              datosContratista.controls.tipoDocumento.invalid
+            "
+          >
+            <span *ngIf="datosContratista.controls.tipoDocumento.required"
+              >Este campo es obligatorio.</span
+            >
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label> Documento </mat-label>
+          <input
+            matInput
+            formControlName="documento"
+            name="documento"
+            required
+          />
+          <mat-error
+            *ngIf="
+              datosContratista.controls.documento.touched &&
+              datosContratista.controls.documento.invalid
+            "
+          >
+            <span *ngIf="datosContratista.controls.documento.errors.required"
+              >Este campo es obligatorio.</span
+            >
+            <span *ngIf="datosContratista.controls.documento.errors.pattern"
+              >Este valor es invalido.</span
+            >
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label> Telefono </mat-label>
+          <input matInput formControlName="telefono" name="telefono" required />
+          <mat-error
+            *ngIf="
+              datosContratista.controls.telefono.touched &&
+              datosContratista.controls.telefono.invalid
+            "
+          >
+            <span *ngIf="datosContratista.controls.telefono.errors.required"
+              >Este campo es obligatorio.</span
+            >
+            <span *ngIf="datosContratista.controls.telefono.errors.pattern"
+              >Este valor es invalido.</span
+            >
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label> Correo </mat-label>
+          <input matInput formControlName="correo" name="correo" required />
+          <mat-error
+            *ngIf="
+              datosContratista.controls.correo.touched &&
+              datosContratista.controls.correo.invalid
+            "
+          >
+            <span *ngIf="datosContratista.controls.correo.errors.required"
+              >Este campo es obligatorio.</span
+            >
+            <span *ngIf="datosContratista.controls.correo.errors.email"
+              >Este valor es invalido.</span
+            >
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field
+          class="form-field"
+          appearance="outline"
+          ngDefaultControl
+        >
+          <mat-label> Ciudad </mat-label>
+          <mat-select
+            formControlName="ciudad"
+            name="ciudad"
+            [formControl]="ciudadN"
+            ngDefaultControl
+          >
+            <mat-option
+              *ngFor="let city of ciudades"
+              [value]="city"
+              ngDefaultControl
+            >
+              {{ city.nombre }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              datosContratista.controls.ciudad.touched &&
+              datosContratista.controls.ciudad.invalid
+            "
+          >
+            <span *ngIf="datosContratista.controls.ciudad.errors.required"
+              >Este campo es obligatorio.</span
+            >
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field
+          *ngIf="zonasListas"
+          class="form-field"
+          appearance="outline"
+        >
+          <mat-label> Zona </mat-label>
+          <mat-select formControlName="zona" name="zona">
+            <mat-option *ngFor="let zone of zonas" [value]="zone">
+              {{ zone.nombre }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              datosContratista.controls.zona.touched &&
+              datosContratista.controls.zona.invalid
+            "
+          >
+            <span *ngIf="datosContratista.controls.zona.errors.required"
+              >Este campo es obligatorio.</span
+            >
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>Rango de vigencia</mat-label>
+          <mat-date-range-input [rangePicker]="picker">
+            <input
+              matStartDate
+              formControlName="vigenciaDesde"
+              placeholder="Vigencia desde"
+              name="vigenciaDesde"
+            />
+            <input
+              matEndDate
+              formControlName="vigenciaHasta"
+              placeholder="Vigencia hasta"
+              name="vigenciaHasta"
+            />
+          </mat-date-range-input>
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+
+          <mat-error
+            *ngIf="
+              datosContratista.controls.vigenciaDesde.touched &&
+              datosContratista.controls.vigenciaDesde.invalid
+            "
+          >
+            <span
+              *ngIf="datosContratista.controls.vigenciaDesde.errors.required"
+              >Este campo es obligatorio.</span
+            >
+          </mat-error>
+          <mat-error
+            *ngIf="
+              datosContratista.controls.vigenciaHasta.touched &&
+              datosContratista.controls.vigenciaHasta.invalid
+            "
+          >
+            <span
+              *ngIf="datosContratista.controls.vigenciaHasta.errors.required"
+              >Este campo es obligatorio.</span
+            >
+          </mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit">
+          Siguiente
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="containerP" *ngIf="preciosConceptosCargados">
+  <h2>Ingrese los precios de los materiales y/o actividades solicitadas</h2>
+  <form [formGroup]="datosPrecios" (submit)="submitDatosPrecios()">
+    <div
+      class="gridInstalacionPrecios"
+      *ngFor="let tipo of conceptosEquiposInstalaciones"
+    >
+      <h2>Instalación de {{ tipo[1] }}</h2>
+      <div class="gridPrecios">
+        <h3>Equipos</h3>
+        <mat-list-item *ngFor="let equipo of tipo[3]">
+          <div mat-line>{{ equipo.nombre }} {{ equipo.precio }}</div>
+        </mat-list-item>
+      </div>
+    </div>
+  </form>
+</div>

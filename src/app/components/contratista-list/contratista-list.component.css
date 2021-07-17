@@ -1,0 +1,21 @@
+.contentList {
+  align-self: center;
+}
+
+.containerList {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.titulo {
+  font-weight: 700;
+  text-align: center;
+}
+
+table {
+  width: 100%;
+}
