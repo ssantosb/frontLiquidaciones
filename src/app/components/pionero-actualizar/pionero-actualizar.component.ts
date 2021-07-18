@@ -61,4 +61,8 @@ export class PioneroActualizarComponent implements OnInit {
     return this.act;
   }
 
+  actualizar(){
+    
+  }
+
 }

@@ -1,4 +1,4 @@
-<div class="container" style="padding-top: 10px;">
+<div class="container" style="padding-top: 15px;">
     <h1 class="titulo">Actualizar pionero</h1>
 </div>
 <div class="containerC">
@@ -11,6 +11,27 @@
         <input type="file" class="upload" (change)="changeListener($event.target.files)">
     </div>
     <div class="container" style="padding-block: 10px;">
-        <button mat-raised-button color="primary" (click)="loadFile()">Continuar</button>
+        <button mat-raised-button color="primary" (click)="loadFile()">Cargar</button>
+    </div>
+    <div *ngIf="act.length > 0" class="container" >
+        <table>
+            <thead>
+              <tr>           
+                <th>idConcepto</th>
+                <th>Precio</th>
+                <th>Vigencia</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let pionero of act">           
+                <td>{{ pionero.idConcepto }}</td>
+                <td>{{ pionero.precio}}</td>
+                <td>{{ pionero.vigencia }}</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+    <div *ngIf="act.length > 0" class="container" style="padding-block: 10px;">
+        <button mat-raised-button color="primary" (click)="actualizar()">Actualizar datos</button>
     </div>
 </div>
