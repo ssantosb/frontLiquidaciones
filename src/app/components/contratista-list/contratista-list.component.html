@@ -8,7 +8,8 @@
         <ng-container matColumnDef="tipoDocumento">
           <th mat-header-cell *matHeaderCellDef>Tipo documento</th>
           <td mat-cell *matCellDef="let element">
-            {{ element.tipoDocumento }}
+            <!-- NICO ESTUVO AQUÍ -->
+            {{ parseTipoDocumento(element.tipoDocumento) }}
           </td>
         </ng-container>
         <ng-container matColumnDef="documento">
@@ -34,14 +35,16 @@
         <ng-container matColumnDef="vigenciaDesde">
           <th mat-header-cell *matHeaderCellDef>Vigencia desde</th>
           <td mat-cell *matCellDef="let element">
-            {{ element.vigenciaDesde }}
+            <!-- Y AQUÍ -->
+            {{ parseDate(element.vigenciaDesde) }}
           </td>
         </ng-container>
 
         <ng-container matColumnDef="vigenciaHasta">
           <th mat-header-cell *matHeaderCellDef>Vigencia hasta</th>
           <td mat-cell *matCellDef="let element">
-            {{ element.vigenciaHasta }}
+            <!-- POR ACÁ TAMBIÉN, mucho metiche :c -->
+            {{ parseDate(element.vigenciaHasta) }}
           </td>
         </ng-container>
 
